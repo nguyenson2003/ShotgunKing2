@@ -1,7 +1,5 @@
 package com.mygdx.shotgunking.resource;
 
-import java.util.prefs.BackingStoreException;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
@@ -21,13 +19,14 @@ public class Settings {
         canPlayMusic = prefs.getBoolean("canPlayMusic",true);
         canPlaySound = prefs.getBoolean("canPlaySound",true);
         shield =prefs.getInteger("shield",0);
-        AudioManager.instance.onSettingsUpdated();
     }
     public void save(){
         prefs.putBoolean("canPlayMusic",canPlayMusic);
         prefs.putBoolean("canPlaySound",canPlaySound);
         prefs.putInteger("shield",shield);
-        AudioManager.instance.onSettingsUpdated();
+        try {
+            AudioManager.instance.onSettingsUpdated();
+        }catch (NullPointerException ignored){}
     }
     public void reset() {
         prefs.clear();

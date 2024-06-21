@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.shotgunking.resource.FontManager;
 import com.mygdx.shotgunking.resource.ImageManager;
 import com.mygdx.shotgunking.view.gameplay.GameplayRoom;
+import com.mygdx.shotgunking.view.home.HomeRoom;
 import com.mygdx.shotgunking.view.shared.*;
 
 
@@ -18,7 +19,7 @@ public class ShotgunKing extends ApplicationAdapter {
 	TRoom room;
 	public static ShotgunKing instance;
 
-	public static ShotgunKing getGetInstance() {
+	public static ShotgunKing getInstance() {
 		return instance;
 	}
 
@@ -40,7 +41,7 @@ public class ShotgunKing extends ApplicationAdapter {
 		instance = this;
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
-		setRoom(new GameplayRoom());
+		setRoom(new HomeRoom());
 //		setRoom(new TRoom());
 //		TGridLayoutPanel center = new TGridLayoutPanel(5,2,10,10);
 //		room.add(center);
@@ -55,12 +56,14 @@ public class ShotgunKing extends ApplicationAdapter {
 	public void setRoom(TRoom room) {
 		this.room = room;
 		Gdx.input.setInputProcessor(room);
+
+		resize(widthScreen,heightScreen);
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
-		if(width==widthScreen && height==heightScreen)return;
+//		if(width==widthScreen && height==heightScreen)return;
 		widthScreen=width;heightScreen=height;
 		batch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
 		int wight1 = width;

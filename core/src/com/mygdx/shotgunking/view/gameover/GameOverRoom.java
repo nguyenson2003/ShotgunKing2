@@ -1,61 +1,51 @@
 package com.mygdx.shotgunking.view.gameover;
 
 
-import com.mygdx.shotgunking.view.shared.TButton;
-import com.mygdx.shotgunking.view.shared.TPanel;
-import com.mygdx.shotgunking.view.shared.TRoom;
+import com.mygdx.shotgunking.ShotgunKing;
+import com.mygdx.shotgunking.view.gameplay.GameplayRoom;
+import com.mygdx.shotgunking.view.home.HomeRoom;
+import com.mygdx.shotgunking.view.shared.*;
 
 public class GameOverRoom extends TRoom {
     TPanel titleLabel = new TPanel("Shotgun King");
-    TButton playButton = new TButton("Chơi lại");
-    TButton homeButton = new TButton("Màn hình chính");
-    TPanel northPanel = new TPanel();
-    TPanel centerPanel = new TPanel();
+    TButton playButton = new TButton("Chơi lại"){
+        @Override
+        protected boolean shortTouchAction(int x, int y, int pointer, int button) {
+            super.shortTouchAction(x, y, pointer, button);
+            ShotgunKing.instance.setRoom(new GameplayRoom());
+            return true;
+        }
+    };
+    TButton homeButton = new TButton("Màn hình chính"){
+        @Override
+        protected boolean shortTouchAction(int x, int y, int pointer, int button) {
+            super.shortTouchAction(x, y, pointer, button);
+            ShotgunKing.instance.setRoom(new HomeRoom());
+            return true;
+        }
+    };
+    TPanel northPanel = new TBorderLayoutPanel();
+    TPanel centerPanel = new TGridLayoutPanel(1,2,20,20);
     public GameOverRoom(boolean isWin){
         if(isWin)titleLabel.setText("Chiến thắng!");
         else titleLabel.setText("Thua cuộc!");
-        this.setBackground(General.DEFAULT_COLOR);
-        this.setLayout(new BorderLayout());
-        this.add(northPanel, BorderLayout.NORTH);
-        this.add(centerPanel, BorderLayout.CENTER);
-        northPanel.setLayout(new BorderLayout());
+        this.add(northPanel, NORTH);
+        this.add(centerPanel, CENTER);
         northPanel.setOpaque(false);
         northPanel.add(titleLabel);
-        centerPanel.setLayout(new GridLayout(1,2,20,20));
         centerPanel.setOpaque(false);
         centerPanel.add(playButton);
         centerPanel.add(homeButton);
-        playButton.addActionListener(e -> {
-            General.getGeneralFrame().setRoom(new GameplayRoom());
-        });
-        homeButton.addActionListener(e -> {
-            General.getGeneralFrame().setRoom(new HomeRoom());
-        });
-        this.addComponentListener(this);
     }
 
     @Override
-    public void componentResized(ComponentEvent e) {
-        northPanel.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()/2));
-        titleLabel.setFont(new Font(titleLabel.getFont().getName(),Font.BOLD,this.getHeight()/7));
-        Font fontBtn = new Font(titleLabel.getFont().getName(),Font.PLAIN,this.getWidth()/3/10);
-        playButton.setFont(fontBtn);
-        homeButton.setFont(fontBtn);
-        centerPanel.setBorder(new EmptyBorder(getHeight()/6,getWidth()/20,getHeight()/6,getWidth()/20));
-    }
-
-    @Override
-    public void componentMoved(ComponentEvent e) {
-
-    }
-
-    @Override
-    public void componentShown(ComponentEvent e) {
-
-    }
-
-    @Override
-    public void componentHidden(ComponentEvent e) {
-
+    protected void resizeAction() {
+        super.resizeAction();
+        northPanel.setSize(this.getWidth(),this.getHeight()/2);
+        titleLabel.setTextScale(this.getHeight()*0.1f/100);
+        float fontBtnScale = this.getHeight()*0.15f/100;
+        playButton.setTextScale(fontBtnScale);
+        homeButton.setTextScale(fontBtnScale);
+        centerPanel.getBorder().setSize(getHeight()/6,getWidth()/20,getHeight()/6,getWidth()/20);
     }
 }

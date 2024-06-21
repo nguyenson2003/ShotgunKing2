@@ -2,9 +2,11 @@ package com.mygdx.shotgunking.view.gameplay;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Align;
+import com.mygdx.shotgunking.ShotgunKing;
 import com.mygdx.shotgunking.model.*;
 import com.mygdx.shotgunking.model.card.Card;
 import com.mygdx.shotgunking.resource.FontManager;
+import com.mygdx.shotgunking.view.gameover.GameOverRoom;
 import com.mygdx.shotgunking.view.shared.TBorderLayoutPanel;
 import com.mygdx.shotgunking.view.shared.TPanel;
 import com.mygdx.shotgunking.view.shared.TRoom;
@@ -170,7 +172,7 @@ public class GameplayRoom extends TRoom {
                     return;
                 }else if(currentTime>2000){
                     if(floor==maxFloor) {
-//                        General.getGeneralFrame().setRoom(new GameOverRoom(true));
+                        ShotgunKing.instance.setRoom(new GameOverRoom(true));
                     }else
                         makeTwoChoice();
                     floor++;
@@ -182,7 +184,7 @@ public class GameplayRoom extends TRoom {
                     boardView.blackPieceView=null;
                 }
                 if(currentTime>2000){
-//                ShotgunKing.setRoom(new GameOverRoom(false));
+                    ShotgunKing.instance.setRoom(new GameOverRoom(false));
                     isStop=true;
                 }
             }
