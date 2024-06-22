@@ -75,7 +75,7 @@ public class SettingRoom extends TRoom  {
     protected void resizeAction() {
         super.resizeAction();
         northPanel.setSize(this.getWidth(),this.getHeight()/4);
-        titleLabel.setTextScale(this.getHeight()*0.1f/100);
+        titleLabel.setTextScale(this.getHeight()*0.3f/100);
         float fontBtnScale = this.getHeight()*0.15f/100;
         musicLabel.setTextScale(fontBtnScale);
         musicButton.setTextScale(fontBtnScale);

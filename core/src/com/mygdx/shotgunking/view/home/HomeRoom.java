@@ -48,7 +48,7 @@ public class HomeRoom extends TRoom {
     protected void resizeAction() {
         super.resizeAction();
         northPanel.setSize(this.getWidth(),this.getHeight()/2);
-        titleLabel.setTextScale(this.getHeight()*0.2f/100);
+        titleLabel.setTextScale(this.getHeight()*0.4f/100);
         float fontBtnScale = this.getHeight()*0.15f/100;
         playButton.setTextScale(fontBtnScale);
         settingButton.setTextScale(fontBtnScale);

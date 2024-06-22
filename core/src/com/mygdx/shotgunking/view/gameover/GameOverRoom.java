@@ -42,7 +42,7 @@ public class GameOverRoom extends TRoom {
     protected void resizeAction() {
         super.resizeAction();
         northPanel.setSize(this.getWidth(),this.getHeight()/2);
-        titleLabel.setTextScale(this.getHeight()*0.1f/100);
+        titleLabel.setTextScale(this.getHeight()*0.3f/100);
         float fontBtnScale = this.getHeight()*0.15f/100;
         playButton.setTextScale(fontBtnScale);
         homeButton.setTextScale(fontBtnScale);

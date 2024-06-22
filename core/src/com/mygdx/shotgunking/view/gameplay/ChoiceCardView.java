@@ -50,8 +50,8 @@ class SingleChoice extends TBorderLayoutPanel {
                 return true;
             }
         };
-        this.setBorder(new TBorder(new Color(0x0088ffff),5));
-        selectButton.setBorder(new TBorder(new Color(0x0088ffff),5,0,0,0));
+        this.setBorder(new TBorder(new Color(0x0077ffff),5));
+        selectButton.setBorder(new TBorder(new Color(0x0077ffff),5,0,0,0));
         centerPanel.add(card1img);
         centerPanel.add(card2img);
         this.add(selectButton,SOUTH);

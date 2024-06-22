@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Cursor;
 import com.mygdx.shotgunking.resource.AudioManager;
 
 public class TButton extends TPanel {
-    private Color DEFAUT_COLOR1 = new Color(0x00bbffff);
+    private Color DEFAUT_COLOR1 = new Color(0x0099ffff);
     private Color DEFAUT_COLOR2 = new Color(0x00ddffff);
     public TButton(){
 //        setBorder(BorderFactory.createLineBorder(Color.black,4));
