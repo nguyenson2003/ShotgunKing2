@@ -41,6 +41,8 @@ public class AudioManager {
         }
     }
     public void playMusic(){
+        if(getPlayingMusic()==null)
+            playMusic(backgroundMusic);
         if (Settings.instance.canPlayMusic && getPlayingMusic()!=null)
             getPlayingMusic().play();
     }
@@ -56,7 +58,7 @@ public class AudioManager {
         return playingMusic;
     }
     public void onSettingsUpdated () {
-        if (playingMusic == null) return;
+//        if (playingMusic == null) return;
         if (Settings.instance.canPlayMusic) {
             playMusic();
         } else {

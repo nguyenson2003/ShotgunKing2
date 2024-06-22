@@ -7,7 +7,9 @@ import com.mygdx.shotgunking.model.*;
 import com.mygdx.shotgunking.model.card.Card;
 import com.mygdx.shotgunking.resource.FontManager;
 import com.mygdx.shotgunking.view.gameover.GameOverRoom;
+import com.mygdx.shotgunking.view.setting.SettingRoom;
 import com.mygdx.shotgunking.view.shared.TBorderLayoutPanel;
+import com.mygdx.shotgunking.view.shared.TButton;
 import com.mygdx.shotgunking.view.shared.TPanel;
 import com.mygdx.shotgunking.view.shared.TRoom;
 
@@ -32,6 +34,14 @@ public class GameplayRoom extends TRoom {
     private InfoBlackKingView infoBlackKingView=new InfoBlackKingView();
     private ChoiceCardView choiceCardView ;
     private InfoCardView infoCard = new InfoCardView();
+    private TButton pauseButton = new TButton("|  |"){
+        @Override
+        protected boolean shortTouchAction(int x, int y, int pointer, int button) {
+            super.shortTouchAction(x, y, pointer, button);
+            ShotgunKing.instance.setRoom(new SettingRoom(GameplayRoom.this));
+            return true;
+        }
+    };
     public int floor = 1;
     public int maxFloor = 11;
     public GameplayRoom(){
@@ -55,6 +65,7 @@ public class GameplayRoom extends TRoom {
         centerPanel.add(centerCenterPanel,TBorderLayoutPanel.CENTER);
         this.add(containLayer);
         containLayer.add(boardLayer);
+        containLayer.add(pauseButton);
         containLayer.add(infoCard);
         boardLayer.add(centerPanel,TBorderLayoutPanel.CENTER);
         boardLayer.add(buffPanel,TBorderLayoutPanel.WEST);
@@ -143,7 +154,9 @@ public class GameplayRoom extends TRoom {
         msgLabel.setTextScale(msgLabel.getHeight()*1.0f/FontManager.instance.default_font.getLineHeight());
         boardLayer.setBounds(0,0,this.getWidth(),this.getHeight());
         infoCard.setSize(this.getWidth()/3,this.getWidth()/3*2/3);
-
+        pauseButton.setSize(msgLabel.getHeight(), msgLabel.getHeight());
+        pauseButton.setLocation(this.getWidth()/2-pauseButton.getWidth()/2,this.getHeight()/100);
+        pauseButton.setTextScale(pauseButton.getHeight()*0.9f/100);
 //        centerPanel.setBorder(new EmptyBorder(0,getWidth()/11,0,getWidth()/11));
     }
 

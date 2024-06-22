@@ -4,14 +4,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.mygdx.shotgunking.ShotgunKing;
 import com.mygdx.shotgunking.resource.AudioManager;
 import com.mygdx.shotgunking.view.gameplay.GameplayRoom;
+import com.mygdx.shotgunking.view.help.HelpRoom;
 import com.mygdx.shotgunking.view.setting.SettingRoom;
 import com.mygdx.shotgunking.view.shared.*;
 
 public class HomeRoom extends TRoom {
-    TPanel titleLabel = new TPanel("Shotgun King");
+    TPanel titleLabel = new TPanel("Vua Shotgun");
     TButton playButton = new TButton("Chơi ngay"){
         @Override
         protected boolean shortTouchAction(int x, int y, int pointer, int button) {
+            super.shortTouchAction(x, y, pointer, button);
             ShotgunKing.instance.setRoom(new GameplayRoom());
             return true;
         }
@@ -19,14 +21,16 @@ public class HomeRoom extends TRoom {
     TButton settingButton = new TButton("Cài đặt"){
         @Override
         protected boolean shortTouchAction(int x, int y, int pointer, int button) {
+            super.shortTouchAction(x, y, pointer, button);
             ShotgunKing.instance.setRoom(new SettingRoom(HomeRoom.this));
             return true;
         }
     };
-    TButton exitButton = new TButton("Thoát"){
+    TButton helpButton = new TButton("Trợ giúp"){
         @Override
         protected boolean shortTouchAction(int x, int y, int pointer, int button) {
-            System.exit(0);
+            super.shortTouchAction(x, y, pointer, button);
+            ShotgunKing.instance.setRoom(new HelpRoom(1));
             return true;
         }
     };
@@ -40,8 +44,8 @@ public class HomeRoom extends TRoom {
         centerPanel.setOpaque(false);
         centerPanel.add(playButton);
         centerPanel.add(settingButton);
-        centerPanel.add(exitButton);
-        AudioManager.instance.playMusic(AudioManager.instance.backgroundMusic);
+        centerPanel.add(helpButton);
+//        AudioManager.instance.playMusic(AudioManager.instance.backgroundMusic);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class HomeRoom extends TRoom {
         float fontBtnScale = this.getHeight()*0.15f/100;
         playButton.setTextScale(fontBtnScale);
         settingButton.setTextScale(fontBtnScale);
-        exitButton.setTextScale(fontBtnScale);
+        helpButton.setTextScale(fontBtnScale);
         centerPanel.setBorder(new TBorder(new Color(0),getHeight()/6,getWidth()/20,getHeight()/6,getWidth()/20));
     }
 

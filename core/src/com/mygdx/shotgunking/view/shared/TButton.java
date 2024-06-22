@@ -11,20 +11,23 @@ public class TButton extends TPanel {
     private Color DEFAUT_COLOR2 = new Color(0x00ddffff);
     public TButton(){
 //        setBorder(BorderFactory.createLineBorder(Color.black,4));
-        setBackgroundColor(DEFAUT_COLOR1);
-        setTextColor(Color.WHITE);
-        setOpaque(true);
+        this("");
 
     }
 
     public TButton(String text){
-        this();
+        setBackgroundColor(DEFAUT_COLOR1);
+        setTextColor(Color.WHITE);
+        setOpaque(true);
         setText(text);
         setBorder(new TBorder(Color.BLACK,5));
     }
     @Override
     protected boolean shortTouchAction(int x, int y, int pointer, int button) {
+        if(!isVisible())return false;
+        AudioManager.instance.onSettingsUpdated();
         AudioManager.instance.playSound(AudioManager.instance.button);
+        Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
         return super.shortTouchAction(x, y, pointer, button);
     }
 

@@ -10,6 +10,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("shotgun-king");
 //		config.setInitialVisible(false);
+		config.setWindowedMode(1080,720);
 		new Lwjgl3Application(new ShotgunKing(), config);
 
 

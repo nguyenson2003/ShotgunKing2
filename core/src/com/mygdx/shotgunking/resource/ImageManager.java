@@ -25,6 +25,8 @@ public class ImageManager {
     public final Texture shadowParticle;
     // img/number/....png
     public final Texture[] number = new Texture[10];
+    // img/demo/...png
+    public final Texture help1,help2,help3;
     private ImageManager(){
         backgroundImg = createImg("img/background.png");
         // 1
@@ -109,6 +111,12 @@ public class ImageManager {
             for(int i=0;i<10;i++){
                 number[i]= createImg("img/number/num"+i+".png");
             }
+        }
+        //6
+        {
+            help1=createImg("img/demo/help1.png");
+            help2=createImg("img/demo/help2.png");
+            help3=createImg("img/demo/help3.png");
         }
     }
     private static Texture createImg(String path){

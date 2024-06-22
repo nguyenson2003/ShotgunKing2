@@ -11,7 +11,6 @@ public class Settings {
     Preferences prefs;
     private Settings(){
         load();
-        save();
     }
 
     public void load(){
@@ -24,6 +23,7 @@ public class Settings {
         prefs.putBoolean("canPlayMusic",canPlayMusic);
         prefs.putBoolean("canPlaySound",canPlaySound);
         prefs.putInteger("shield",shield);
+        prefs.flush();
         try {
             AudioManager.instance.onSettingsUpdated();
         }catch (NullPointerException ignored){}
@@ -31,5 +31,6 @@ public class Settings {
     public void reset() {
         prefs.clear();
         load();
+        save();
     }
 }
