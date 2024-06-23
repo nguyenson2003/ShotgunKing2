@@ -15,7 +15,7 @@ public class HelpRoom extends TRoom {
     TPanel contentPanel = new TPanel();
     TPanel imgPanel = new TPanel();
     TBorderLayoutPanel southPanel = new TBorderLayoutPanel();
-    TButton homeButton = new TButton("Màn hinnh chính"){
+    TButton homeButton = new TButton("Màn hình chính"){
         @Override
         protected boolean shortTouchAction(int x, int y, int pointer, int button) {
             super.shortTouchAction(x, y, pointer, button);
