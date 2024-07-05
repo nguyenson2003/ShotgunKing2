@@ -342,7 +342,13 @@ public class TPanel extends InputAdapter {
         }
         return false;
     }
-    private boolean isMouseOnTPanel(int mouseX,int mouseY){
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return mouseMoved(screenX,screenY);
+    }
+
+    private boolean isMouseOnTPanel(int mouseX, int mouseY){
         return
                 0<=mouseX
                 && 0<=mouseY
