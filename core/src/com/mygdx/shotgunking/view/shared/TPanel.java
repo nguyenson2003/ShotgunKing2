@@ -293,6 +293,7 @@ public class TPanel extends InputAdapter {
     long startTimeClick=0;
     @Override
     public final boolean touchDown(int mouseX, int mouseY, int pointer, int button) {
+        mouseMoved(mouseX,mouseY);
         mouseX-=x;
         mouseY-=y;
         if(mouseX<0||mouseX>width)return false;
@@ -306,6 +307,7 @@ public class TPanel extends InputAdapter {
 
     @Override
     public final boolean touchUp(int mouseX, int mouseY, int pointer, int button) {
+        mouseMoved(mouseX,mouseY);
         mouseX-=x;
         mouseY-=y;
         if(mouseX<0||mouseX>width)return false;
